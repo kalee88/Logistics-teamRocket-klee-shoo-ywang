@@ -2,6 +2,7 @@ Web VPython 3.2
 
 class Imaginary:
     def __init__(self, real, complex, power=1):
+        # Set i to lowest power possible
         self.power = power%2
         if power%4==1:
             self.real = real
@@ -69,15 +70,14 @@ def subtract_complex(complex_list):
 # Multiply complex numbers
 def mult_complex(complex_list):
     real1, complex1, p1 = complex_list[0].get_real(), complex_list[0].get_imag(), complex_list[0].get_power()
-    
     for num in complex_list[1:]:
+        # Multiplies by distributing
         real2, complex2, p2 = num.get_real(), num.get_imag(), num.get_power()
         bd = -(complex1 * complex2)
         new_real = real1 * real2 + bd
         ad = real1 * complex2
         bc = real2 * complex1
         new_imag = ad + bc
-        
         real1, complex1, p1 = new_real, new_imag, 1
     return Imaginary(real1, complex1, p1)
     
